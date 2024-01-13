@@ -1,4 +1,4 @@
-package tinyap;
+package net.leskowsky.tinyap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
