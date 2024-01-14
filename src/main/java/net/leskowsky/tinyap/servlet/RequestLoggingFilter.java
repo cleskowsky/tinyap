@@ -24,8 +24,9 @@ public class RequestLoggingFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
-        logger.info(String.format("path=%s method=%s status=%d duration_ms=%d",
+        logger.info(String.format("url: %s, queryParams: %s, method: %s, status: %d, duration_ms: %d",
                 req.getRequestURI(),
+                req.getQueryString(),
                 req.getMethod(),
                 resp.getStatus(),
                 System.currentTimeMillis() - startTime
