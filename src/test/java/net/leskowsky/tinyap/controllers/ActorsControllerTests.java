@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ActorsController.class)
 public class ActorsControllerTests {
@@ -18,6 +19,7 @@ public class ActorsControllerTests {
     @Test
     void actorSearch() throws Exception {
         mockMvc.perform(get("/actors/search?q=@fraggle@mastodon.gamedev.place"))
+                .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Found @fraggle@mastodon.gamedev.place")));
     }
 }
