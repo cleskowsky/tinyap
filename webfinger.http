@@ -1,0 +1,4 @@
+GET https://mastodon.social/.well-known/webfinger?resource=acct:cleskowsky@mastodon.social
+Accept: application/json
+
+###
