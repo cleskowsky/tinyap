@@ -2,16 +2,23 @@ package net.leskowsky.tinyap.services;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FollowServiceTests {
 
-    // Get activitypub url for actor (webfinger)
+    // follow actor
     @Test
-    void getWebfingerResource() {
-        // Given a user and domain of an actor on mastodon,
-        // When I make a webfinger request,
-        // Then I get back a response with a fediverse user url
+    void sendFollowRequest() {
+        // Given a user and domain of an actor in the fediverse,
+        String user = "cleskowsky";
+        String domain = "mastodon.social";
+
+        // When I make a webfinger request for the user@domain,
+        FollowService followService = new FollowService();
+        FollowRequest followRequest = followService.sendFollowRequest(user, domain);
+
+        // I get back a response containing an actor url
+        assertEquals(followRequest.getStatus(), FollowRequestStatus.Waiting);
     }
 
 
@@ -20,5 +27,5 @@ public class FollowServiceTests {
     // accept request
     // deny request
     // handle actor not found
-    // follow actor
+    // handle server timed out or returns 500
 }

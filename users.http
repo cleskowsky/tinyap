@@ -1,0 +1,4 @@
+GET https://mastodon.social/users/cleskowsky
+Accept: application/json
+
+###
