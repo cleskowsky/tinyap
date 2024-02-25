@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class ErrorReporter {
+class ErrorReporter {
 
     /**
      * Send application log messages to stdout by default
@@ -29,9 +29,7 @@ public class ErrorReporter {
     }
 
     public void reportError(String msg, Throwable t, Map<String, String> errorDetails) {
-        getStorageGatewayList().forEach(gw -> {
-            gw.sendErrorReport(new ErrorReport(msg, t, errorDetails));
-        });
+        getStorageGatewayList().forEach(gw -> gw.sendErrorReport(new ErrorReport(msg, t, errorDetails)));
     }
 
     public List<StorageGateway> getStorageGatewayList() {
@@ -39,10 +37,10 @@ public class ErrorReporter {
     }
 
     /**
-     * Details about how specific storage strategies work (eg Console (stdout), Sentry, etc)
+     * Details about how specific storage strategies work (e.g. Console (stdout), Sentry, etc.)
      */
-    static interface StorageGateway {
-        public void sendErrorReport(ErrorReport errorReport);
+    interface StorageGateway {
+        void sendErrorReport(ErrorReport errorReport);
     }
 
     /**
@@ -51,7 +49,7 @@ public class ErrorReporter {
      * @param cause
      * @param errorDetails
      */
-    static record ErrorReport(String msg, Throwable cause, Map<String, String> errorDetails) {
+    record ErrorReport(String msg, Throwable cause, Map<String, String> errorDetails) {
     }
 
     /**
